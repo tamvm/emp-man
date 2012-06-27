@@ -34,26 +34,24 @@ public class MainFrame extends JFrame {
     pnlMain.setLayout(layout);
 
     pnlMain.add(createLeftPanel(), "west");//
-    pnlMain.add(createRightPanel());
+    pnlMain.add(createRightPanel(), "height max");
 
     add(pnlMain);
 
   }
 
-  private JTabbedPane createLeftPanel() {
+  private JComponent createLeftPanel() {
     JPanel pnlLeft = new JPanel();
     pnlLeft.setLayout(new MigLayout("ins 5"));
 
     JTabbedPane tabbedPane = new JTabbedPane();
-//    JList listFuncs = new JList(new String[] {"Employee List",
-//      "Client List"});
     JList listFuncs = new JList();
     listFuncs.setBorder(BorderFactory.createLoweredBevelBorder());
     listFuncs.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     listFuncs.setModel(createListModelForFunctionsPanel());
 
-    JScrollPane list1 = new JScrollPane(listFuncs);
-    pnlLeft.add(list1, "spany, growy, wmin 290, hmin 720");
+    JScrollPane scrollList = new JScrollPane(listFuncs);
+    pnlLeft.add(scrollList, "top, width 290, height max");
     tabbedPane.add(pnlLeft, "Functions");
 
     return tabbedPane;
@@ -67,21 +65,18 @@ public class MainFrame extends JFrame {
     return model;
   }
 
-  private JPanel createRightPanel() {
+  private JComponent createRightPanel() {
     JPanel pnlRight = new JPanel();
+    pnlRight.setLayout(new MigLayout("ins 5"));
 
-    return pnlRight;
-  }
+    JTabbedPane tabbedPane = new JTabbedPane();
+    pnlRight.add(new EmployeeListPanel());
+    tabbedPane.add(pnlRight, "Employee");
 
-   private JPanel getPanel(String title) {
-    JPanel panel = new JPanel();
-    panel.setBorder(BorderFactory.createTitledBorder(title));
-    return panel;
+    return tabbedPane;
   }
 
   public static void main(String[] args) {
-    //Schedule a job for the event-dispatching thread:
-    //creating and showing this application's GUI.
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
 
       public void run() {

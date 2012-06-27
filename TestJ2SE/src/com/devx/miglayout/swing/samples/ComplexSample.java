@@ -36,8 +36,8 @@ public class ComplexSample extends AbstractSampleFrame {
     add(getAdditionalInformationPanel(), "grow");
 
     add(getProductListPanel(), "grow, span 3");
-    add(getTasksPanel(), "grow, span 3");
-    add(getCommentsPanel(), "grow, span 3");
+//    add(getTasksPanel(), "grow, span 3");
+//    add(getCommentsPanel(), "grow, span 3");
     add(getButtonsPanel(), "grow, span 3");
 
     pack();
