@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Aug 31, 2011 5:20:10 PM                                                                                                                      
+     ====================================================================== -->
+<project name="C3" default="instrument" basedir="..">
+
+    <property file="Ant/build.properties"/>
+
+    <path id="instrument_classpath">
+        <pathelement location="${out.dir}"/>
+        <path location="build_time_libs/activejdbc-instrumentation-1.4.1.jar"/>
+        <path location="build_time_libs/javassist-3.8.0.GA.jar"/>
+        <path location="build_time_libs/activejdbc-1.4.1.jar"/>
+    </path>
+
+    <target name="instrument">
+		<echo>${out.dir}</echo>
+        <java classname="org.javalite.instrumentation.Main">
+            <sysproperty key="outputDirectory" value="${out.dir}"/>
+            <classpath refid="instrument_classpath"/>
+        </java>
+    </target>
+
+</project>

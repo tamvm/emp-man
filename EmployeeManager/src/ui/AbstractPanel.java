@@ -5,6 +5,7 @@
 package ui;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import net.miginfocom.swing.MigLayout;
 import util.Global;
 import util.Util;
@@ -15,6 +16,8 @@ import util.Util;
  */
 public abstract class AbstractPanel extends JPanel {
 
+//  protected AbstractTableModel absTblModel;  
+    
   public AbstractPanel() {
     initComponents();
   }
@@ -43,8 +46,13 @@ public abstract class AbstractPanel extends JPanel {
     return button;
   }
 
-  protected JScrollPane getTable(Object... columns) {
-    JTable table = new JTable(new Object[0][0], columns);
+//  protected JScrollPane getTable(Object[] columns){
+//      return new JScrollPane();
+//  }
+  
+  protected JScrollPane getTable(AbstractTableModel absTblModel) {
+    JTable table = new JTable();
+    table.setModel(absTblModel);
     JScrollPane scrollPane = new JScrollPane(table);
     table.setFillsViewportHeight(true);
     return scrollPane;
